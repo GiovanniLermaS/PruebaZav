@@ -20,34 +20,47 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener {
         firebaseAuth = FirebaseAuth.getInstance()
     }
 
+    //Función registro de usuarios
     private fun createUser() {
-        //Se valida si los campos Edittext son vacios, siendo así retorna sino hace el procedimieto normal de registro
-        if (clLoginRegister.setWarningsRequest()) return
-        else {
-            //Método registro de firebase
-            firebaseAuth?.createUserWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
-                ?.addOnCompleteListener(this) {
-                    when {
-                        //Si hubo registro exitoso
-                        it.isSuccessful -> Toast.makeText(
-                            this,
-                            getString(R.string.userRegisteredSuccessful),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        //Si ya existe el usuario que se quiere crear
-                        it.exception is FirebaseAuthUserCollisionException -> Toast.makeText(
-                            this,
-                            getString(R.string.userAlreadyRegistered),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        //Si el usuario no ha podido ser registrado
-                        else -> Toast.makeText(this, getString(R.string.userNotRegistered), Toast.LENGTH_SHORT).show()
+        when {
+            //Se valida si los campos Edittext son vacios, siendo así retorna sino hace el procedimieto normal de registro.
+            clLoginRegister.setWarningsRequest() -> return
+            //Si el usuario no está registrado.
+            etPassword.text.length < 6 -> Toast.makeText(
+                this,
+                getString(R.string.passwordGreaterTo),
+                Toast.LENGTH_SHORT
+            ).show()
+            //Se procede a registrar
+            else ->
+                firebaseAuth?.createUserWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
+                    ?.addOnCompleteListener(this) {
+                        when {
+                            //Si hubo registro exitoso
+                            it.isSuccessful -> Toast.makeText(
+                                this,
+                                getString(R.string.userRegisteredSuccessful),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            //Si ya existe el usuario que se quiere crear
+                            it.exception is FirebaseAuthUserCollisionException? -> Toast.makeText(
+                                this,
+                                getString(R.string.userAlreadyRegistered),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            //Si el usuario no ha podido ser registrado
+                            else -> Toast.makeText(
+                                this,
+                                getString(R.string.userNotCreate),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                }
-            closeProgress()
         }
+        closeProgress()
     }
 
+    //Función ingreso de usuarios
     private fun loginUser() {
         //Se valida si los campos Edittext son vacios, siendo así retorna sino hace el procedimieto normal de login
         if (clLoginRegister.setWarningsRequest()) return
@@ -62,10 +75,16 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener {
                             "${getString(R.string.welcome)} ${etEmail.text}",
                             Toast.LENGTH_SHORT
                         ).show()
+                        //Si el usuario no está registrado.
+                        else -> Toast.makeText(
+                            this,
+                            getString(R.string.userNotRegistered),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
-            closeProgress()
         }
+        closeProgress()
     }
 
     override fun onClick(view: View?) {

@@ -5,8 +5,10 @@
     <string name="register">Registrar</string>
     <string name="requiredField">Campo requerido</string>
     <string name="userRegisteredSuccessful">Usuario registrado exitosamente</string>
-    <string name="userNotRegistered">El usuario no se ha podido crear.</string>
+    <string name="userNotCreate">El usuario no se ha podido crear.</string>
     <string name="userAlreadyRegistered">Usuario ya registrado.</string>
     <string name="login">Ingresar</string>
     <string name="welcome">Bienvenido</string>
+    <string name="passwordGreaterTo">La contraseña debe ser mayor a 6.</string>
+    <string name="userNotRegistered">El usuario no está registrado.</string>
 </resources>

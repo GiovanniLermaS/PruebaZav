@@ -2,7 +2,7 @@ package com.example.pruebazav.Base
 
 import android.app.AlertDialog
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.pruebazav.R
 import dmax.dialog.SpotsDialog
 
