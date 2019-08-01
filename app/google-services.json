@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "600547342074",
+    "firebase_url": "https://pruebazav-d3db8.firebaseio.com",
+    "project_id": "pruebazav-d3db8",
+    "storage_bucket": "pruebazav-d3db8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600547342074:android:7ef65b087ad103e5",
+        "android_client_info": {
+          "package_name": "com.example.pruebazav"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600547342074-k1uekbpdspn8408gbraov6416t7rsu7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDBFwaGL13RPBGE4l4PxYB0qTdlSqTmyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600547342074-k1uekbpdspn8408gbraov6416t7rsu7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
