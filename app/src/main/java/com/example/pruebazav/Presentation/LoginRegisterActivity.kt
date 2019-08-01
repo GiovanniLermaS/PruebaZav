@@ -21,21 +21,26 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun createUser() {
+        //Se valida si los campos Edittext son vacios, siendo así retorna sino hace el procedimieto normal de registro
         if (clLoginRegister.setWarningsRequest()) return
         else {
+            //Método registro de firebase
             firebaseAuth?.createUserWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
                 ?.addOnCompleteListener(this) {
                     when {
+                        //Si hubo registro exitoso
                         it.isSuccessful -> Toast.makeText(
                             this,
                             getString(R.string.userRegisteredSuccessful),
                             Toast.LENGTH_SHORT
                         ).show()
+                        //Si ya existe el usuario que se quiere crear
                         it.exception is FirebaseAuthUserCollisionException -> Toast.makeText(
                             this,
                             getString(R.string.userAlreadyRegistered),
                             Toast.LENGTH_SHORT
                         ).show()
+                        //Si el usuario no ha podido ser registrado
                         else -> Toast.makeText(this, getString(R.string.userNotRegistered), Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -44,11 +49,14 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun loginUser() {
+        //Se valida si los campos Edittext son vacios, siendo así retorna sino hace el procedimieto normal de login
         if (clLoginRegister.setWarningsRequest()) return
         else {
+            //Método login de firebase
             firebaseAuth?.signInWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
                 ?.addOnCompleteListener(this) {
                     when {
+                        //Si hubo login exitoso
                         it.isSuccessful -> Toast.makeText(
                             this,
                             "${getString(R.string.welcome)} ${etEmail.text}",
